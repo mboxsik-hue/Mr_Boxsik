@@ -1,0 +1,89 @@
+@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=Rajdhani:wght@500;600;700&family=JetBrains+Mono:wght@400;500&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  /* Neon Cyberpunk Palette */
+  --background: 240 25% 10%;      /* #131320 */
+  --foreground: 210 40% 98%;      /* #F8FAFC */
+  
+  --primary: 262 80% 65%;         /* #A855F7 Purple Neon */
+  --primary-foreground: 210 40% 98%;
+
+  --secondary: 190 90% 50%;       /* #06B6D4 Cyan Neon */
+  --secondary-foreground: 240 25% 10%;
+
+  --muted: 240 20% 15%;           /* #1E1E2E */
+  --muted-foreground: 240 10% 60%;
+
+  --accent: 320 90% 60%;          /* #FF4081 Pink Neon */
+  --accent-foreground: 210 40% 98%;
+
+  --destructive: 0 84% 60%;
+  --destructive-foreground: 210 40% 98%;
+
+  --border: 240 20% 20%;
+  --input: 240 20% 15%;
+  --ring: 262 80% 65%;
+
+  --radius: 0.75rem;
+
+  /* Rarity Colors */
+  --rarity-common: 240 5% 65%;
+  --rarity-rare: 210 100% 50%;
+  --rarity-epic: 270 100% 60%;
+  --rarity-legendary: 45 100% 50%;
+
+  /* Fonts */
+  --font-display: 'Rajdhani', sans-serif;
+  --font-body: 'Outfit', sans-serif;
+  --font-mono: 'JetBrains Mono', monospace;
+}
+
+@layer base {
+  body {
+    @apply bg-background text-foreground antialiased;
+    font-family: var(--font-body);
+    background-image: 
+      radial-gradient(circle at 50% 0%, rgba(168, 85, 247, 0.15) 0%, transparent 50%),
+      radial-gradient(circle at 85% 30%, rgba(6, 182, 212, 0.1) 0%, transparent 40%);
+    min-height: 100vh;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    font-family: var(--font-display);
+    @apply font-bold tracking-wide uppercase;
+  }
+}
+
+@layer components {
+  .glass-panel {
+    @apply bg-black/40 backdrop-blur-md border border-white/10 shadow-xl;
+  }
+  
+  .neon-text {
+    text-shadow: 0 0 10px currentColor;
+  }
+  
+  .neon-border {
+    box-shadow: 0 0 10px var(--tw-shadow-color);
+  }
+
+  .rarity-common { color: hsl(var(--rarity-common)); }
+  .rarity-rare { color: hsl(var(--rarity-rare)); text-shadow: 0 0 8px hsl(var(--rarity-rare) / 0.5); }
+  .rarity-epic { color: hsl(var(--rarity-epic)); text-shadow: 0 0 8px hsl(var(--rarity-epic) / 0.5); }
+  .rarity-legendary { color: hsl(var(--rarity-legendary)); text-shadow: 0 0 8px hsl(var(--rarity-legendary) / 0.5); }
+
+  .bg-rarity-common { @apply bg-slate-500/20 border-slate-500/50; }
+  .bg-rarity-rare { @apply bg-blue-500/20 border-blue-500/50; }
+  .bg-rarity-epic { @apply bg-purple-500/20 border-purple-500/50; }
+  .bg-rarity-legendary { @apply bg-yellow-500/20 border-yellow-500/50; }
+}
+
+/* Roulette Animation Keyframes */
+@keyframes slide {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(var(--slide-distance)); }
+}
